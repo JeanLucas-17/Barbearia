@@ -36,8 +36,6 @@ public class AlterarProfissionalController extends Principal
         String endereco = txtNovoEndereco.getText().trim();
         String cpf = txtNovoCpf.getText().trim();
 
-        String novosDados[] = {codigo, nome, idade, telefone, endereco, cpf};
-
         if (codigo.isEmpty() || nome.isEmpty() || idade.isEmpty() ||
                 telefone.isEmpty() || endereco.isEmpty() || cpf.isEmpty())
         {
@@ -49,8 +47,13 @@ public class AlterarProfissionalController extends Principal
             return;
         }
 
-        prof.remove(i);
-        prof.add(novosDados);
+        Profissional profissionalExistente = prof.get(i);
+        profissionalExistente.setCodigo(codigo);
+        profissionalExistente.setNome(nome);
+        profissionalExistente.setIdade(idade);
+        profissionalExistente.setTelefone(telefone);
+        profissionalExistente.setEndereco(endereco);
+        profissionalExistente.setCpf(cpf);
 
         alertI.setTitle("ALTERAR PROFISSIONAL");
         alertI.setHeaderText(null);
@@ -76,29 +79,27 @@ public class AlterarProfissionalController extends Principal
         }
 
         boolean encontrado = false;
-
         limparCampos();
 
-        for (String[] profissional : prof)
+        for (Profissional profissional : prof)
         {
-            if (profissional[0].equals(codigo))
+            if (profissional.getCodigo().equals(codigo))
             {
-                txtCodigo.setText(profissional[0]);
-                txtAtualNome.setText(profissional[1]);
-                txtAtualIdade.setText(profissional[2]);
-                txtAtualTelefone.setText(profissional[3]);
-                txtAtualEndereco.setText(profissional[4]);
-                txtAtualCpf.setText(profissional[5]);
+                txtCodigo.setText(profissional.getCodigo());
+                txtAtualNome.setText(profissional.getNome());
+                txtAtualIdade.setText(profissional.getIdade());
+                txtAtualTelefone.setText(profissional.getTelefone());
+                txtAtualEndereco.setText(profissional.getEndereco());
+                txtAtualCpf.setText(profissional.getCpf());
 
-                txtNovoCodigo.setText(profissional[0]);
-                txtNovoNome.setText(profissional[1]);
-                txtNovoIdade.setText(profissional[2]);
-                txtNovoTelefone.setText(profissional[3]);
-                txtNovoEndereco.setText(profissional[4]);
-                txtNovoCpf.setText(profissional[5]);
+                txtNovoCodigo.setText(profissional.getCodigo());
+                txtNovoNome.setText(profissional.getNome());
+                txtNovoIdade.setText(profissional.getIdade());
+                txtNovoTelefone.setText(profissional.getTelefone());
+                txtNovoEndereco.setText(profissional.getEndereco());
+                txtNovoCpf.setText(profissional.getCpf());
 
                 encontrado = true;
-
                 break;
             }
             i++;

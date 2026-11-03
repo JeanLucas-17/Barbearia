@@ -33,15 +33,11 @@ public class CadastrarProfissionalController extends Principal
             return;
         }
 
-        String codigoDigitado = txtCodigo.getText();
-
         boolean encontrado = false;
 
-        for (String[] profissional : prof)
+        for (Profissional profissional : prof)
         {
-            String cod = profissional[0];
-
-            if (cod.equals(codigoDigitado))
+            if (profissional.getCodigo().equals(codigo))
             {
                 alertW.setTitle("CADASTRO PROFISSIONAL");
                 alertW.setHeaderText(null);
@@ -49,16 +45,21 @@ public class CadastrarProfissionalController extends Principal
                 alertW.showAndWait();
 
                 encontrado = true;
-
                 break;
             }
         }
 
         if (!encontrado)
         {
-            String[] dados = new String[] {codigo, nome, idade, telefone, endereco, cpf};
+            Profissional novoProf = new Profissional();
+            novoProf.setCodigo(codigo);
+            novoProf.setNome(nome);
+            novoProf.setIdade(idade);
+            novoProf.setTelefone(telefone);
+            novoProf.setEndereco(endereco);
+            novoProf.setCpf(cpf);
 
-            prof.add(dados);
+            prof.add(novoProf);
 
             alertI.setTitle("CADASTRO PROFISSIONAL");
             alertI.setHeaderText(null);

@@ -16,8 +16,8 @@ public class Principal
     Alert alertW = new Alert(Alert.AlertType.WARNING);
     Alert alertI = new Alert(Alert.AlertType.INFORMATION);
 
-    protected static List<String[]> prof = new ArrayList<>();
-    protected static List<String[]> serv = new ArrayList<>();
+    protected static List<Profissional> prof = new ArrayList<>();
+    protected static List<Servico> serv = new ArrayList<>();
 
     public void limparCampos() {}
 
@@ -26,11 +26,8 @@ public class Principal
         try
         {
             Parent root = FXMLLoader.load(HelloApplication.class.getResource(fxmlTela));
-
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             stage.getScene().setRoot(root);
-
         }
         catch (IOException e)
         {

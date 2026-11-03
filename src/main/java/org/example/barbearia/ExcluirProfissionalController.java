@@ -25,7 +25,6 @@ public class ExcluirProfissionalController extends Principal
             alertW.setHeaderText(null);
             alertW.setContentText("Por favor, preencha o campo de codigo!");
             alertW.showAndWait();
-
             return;
         }
 
@@ -39,10 +38,7 @@ public class ExcluirProfissionalController extends Principal
         limparCampos();
     }
 
-    @FXML public void nExcluir()
-    {
-        limparCampos();
-    }
+    @FXML public void nExcluir() { limparCampos(); }
 
     @FXML public void buscar(ActionEvent event)
     {
@@ -55,27 +51,24 @@ public class ExcluirProfissionalController extends Principal
             alertW.setHeaderText(null);
             alertW.setContentText("Por favor, preencha o campo de codigo!");
             alertW.showAndWait();
-
             return;
         }
 
         boolean encontrado = false;
-
         limparCampos();
 
-        for (String[] profissional : prof)
+        for (Profissional profissional : prof)
         {
-            if (profissional[0].equals(codigo))
+            if (profissional.getCodigo().equals(codigo))
             {
-                txtCodigo.setText(profissional[0]);
-                txtNome.setText(profissional[1]);
-                txtIdade.setText(profissional[2]);
-                txtTelefone.setText(profissional[3]);
-                txtEndereco.setText(profissional[4]);
-                txtCpf.setText(profissional[5]);
+                txtCodigo.setText(profissional.getCodigo());
+                txtNome.setText(profissional.getNome());
+                txtIdade.setText(profissional.getIdade());
+                txtTelefone.setText(profissional.getTelefone());
+                txtEndereco.setText(profissional.getEndereco());
+                txtCpf.setText(profissional.getCpf());
 
                 encontrado = true;
-
                 break;
             }
             i++;

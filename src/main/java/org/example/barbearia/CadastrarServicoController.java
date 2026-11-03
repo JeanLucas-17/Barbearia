@@ -29,15 +29,11 @@ public class CadastrarServicoController extends Principal
             return;
         }
 
-        String codigoDigitado = txtCodigo.getText();
-
         boolean encontrado = false;
 
-        for (String[] servico : serv)
+        for (Servico servico : serv)
         {
-            String cod = servico[0];
-
-            if (cod.equals(codigoDigitado))
+            if (servico.getCodigo().equals(codigo))
             {
                 alertW.setTitle("CADASTRO SERVICO");
                 alertW.setHeaderText(null);
@@ -45,16 +41,19 @@ public class CadastrarServicoController extends Principal
                 alertW.showAndWait();
 
                 encontrado = true;
-
                 break;
             }
         }
 
         if (!encontrado)
         {
-            String[] dados = new String[] {codigo, nome, preco, duracao};
+            Servico novoServico = new Servico();
+            novoServico.setCodigo(codigo);
+            novoServico.setNome(nome);
+            novoServico.setPreco(preco);
+            novoServico.setDuracao(duracao);
 
-            serv.add(dados);
+            serv.add(novoServico);
 
             alertI.setTitle("CADASTRO SERVICO");
             alertI.setHeaderText(null);

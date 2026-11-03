@@ -30,8 +30,6 @@ public class AlterarServicoController extends Principal
         String preco = txtNovoPreco.getText().trim();
         String duracao = txtNovaDuracao.getText().trim();
 
-        String novosDados[] = {codigo, nome, preco, duracao};
-
         if (codigo.isEmpty() || nome.isEmpty() || preco.isEmpty() ||
                 duracao.isEmpty())
         {
@@ -43,8 +41,12 @@ public class AlterarServicoController extends Principal
             return;
         }
 
-        serv.remove(i);
-        serv.add(novosDados);
+        Servico servicoExistente = serv.get(i);
+        servicoExistente.setCodigo(codigo);
+        servicoExistente.setNome(nome);
+        servicoExistente.setPreco(preco);
+        servicoExistente.setDuracao(duracao);
+
         alertI.setTitle("ALTERAR SERVICO");
         alertI.setHeaderText(null);
         alertI.setContentText("Dados do Servico Alterados!");
@@ -69,25 +71,23 @@ public class AlterarServicoController extends Principal
         }
 
         boolean encontrado = false;
-
         limparCampos();
 
-        for (String[] servico : serv)
+        for (Servico servico : serv)
         {
-            if (servico[0].equals(codigo))
+            if (servico.getCodigo().equals(codigo))
             {
-                txtCodigo.setText(servico[0]);
-                txtAtualNome.setText(servico[1]);
-                txtAtualPreco.setText(servico[2]);
-                txtAtualDuracao.setText(servico[3]);
+                txtCodigo.setText(servico.getCodigo());
+                txtAtualNome.setText(servico.getNome());
+                txtAtualPreco.setText(servico.getPreco());
+                txtAtualDuracao.setText(servico.getDuracao());
 
-                txtNovoCodigo.setText(servico[0]);
-                txtNovoNome.setText(servico[1]);
-                txtNovoPreco.setText(servico[2]);
-                txtNovaDuracao.setText(servico[3]);
+                txtNovoCodigo.setText(servico.getCodigo());
+                txtNovoNome.setText(servico.getNome());
+                txtNovoPreco.setText(servico.getPreco());
+                txtNovaDuracao.setText(servico.getDuracao());
 
                 encontrado = true;
-
                 break;
             }
             i++;

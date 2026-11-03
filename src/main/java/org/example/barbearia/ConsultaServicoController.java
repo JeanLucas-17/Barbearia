@@ -21,25 +21,22 @@ public class ConsultaServicoController extends Principal
             alertW.setHeaderText(null);
             alertW.setContentText("Por favor, preencha o campo de codigo!");
             alertW.showAndWait();
-
             return;
         }
 
         boolean encontrado = false;
-
         limparCampos();
 
-        for (String[] servico : serv)
+        for (Servico servico : serv)
         {
-            if (servico[0].equals(codigo))
+            if (servico.getCodigo().equals(codigo))
             {
-                txtCodigo.setText(servico[0]);
-                txtNome.setText(servico[1]);
-                txtPreco.setText(servico[2]);
-                txtDuracao.setText(servico[3]);
+                txtCodigo.setText(servico.getCodigo());
+                txtNome.setText(servico.getNome());
+                txtPreco.setText(servico.getPreco());
+                txtDuracao.setText(servico.getDuracao());
 
                 encontrado = true;
-
                 break;
             }
         }
